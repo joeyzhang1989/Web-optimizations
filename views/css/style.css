@@ -21,3 +21,8 @@
   display: table;
   clear:both;
 }
+
+.mover {
+  transform: translateZ(0);
+  will-change: transform;
+}

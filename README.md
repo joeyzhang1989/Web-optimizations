@@ -45,8 +45,64 @@ $ open "http://localhost:8000"
 1. Compress images and minify the js files.
 
 ####Part 2: Optimize Frames per Second in pizza.html
+2. Inline and identify the **Critical CSS** in the head tag by using the [penthouse](https://github.com/pocketjoso/penthouse).
+2. Add the CSS attribute for the mover class in style.css to improve the render speed (composite independent layers)
 
+```css
+.mover {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}"
+```
+2. Replace the querySelector and querySelectorAll with getElementsByClassName and getElementById for faster speed.
+2. Minify the main.js files, use the minified files for production.
+2. Delete the determineDx function and move sizeSwitcher(size) to changePizzaSizes(size),move the DOM selector out of loop
 
+```JS
+function changePizzaSizes(size) {
+    switch(size) {
+      case "1":
+        newWidth = 25;
+        break;
+      case "2":
+        newWidth = 33.3;
+        break;
+      case "3":
+        newWidth = 50;
+        break;
+      default:
+        console.log("bug in sizeSwitcher");
+    }
+
+    var randomPizzas = document.getElementsByClassName("randomPizzaContainer");
+
+    for (var i = 0; i < randomPizzas.length; i++) {
+      randomPizzas[i].style.width = newWidth + "%";
+    }
+  }
+}"
+```
+2. Added getRandomIntInclusive function to generate random integer number from 0-4, and update the updatePositions function
+```JS
+function updatePositions() {
+  frame++;
+  window.performance.mark("mark_start_frame");
+
+  var items = document.getElementsByClassName('mover');
+
+  function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  
+  for (var i = 0; i < items.length; i++) {
+    var randomNumber = getRandomIntInclusive(0,4);
+    var phase = Math.sin((document.body.scrollTop / 1250) + randomNumber);
+    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+  }
+```
 ### Optimization Tips and Tricks
 * [Optimizing Performance](https://developers.google.com/web/fundamentals/performance/ "web performance")
 * [Analyzing the Critical Rendering Path](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/analyzing-crp.html "analyzing crp")

@@ -39,14 +39,14 @@ $ open "http://localhost:8000"
 
 ####Part 1: Optimize PageSpeed Insights score for html files [PageSpeed Tools](https://developers.google.com/speed/pagespeed/insights/)
 
-1. Inline and identify the **Critical CSS** in the head tag by using the [penthouse](https://github.com/pocketjoso/penthouse).
-1. Move the scripts and links to the end of body tag.
-1. Added media, defer and async attribute to the CSS and JavaScript links.
-1. Compress images and minify the js files.
+*. Inline and identify the **Critical CSS** in the head tag by using the [penthouse](https://github.com/pocketjoso/penthouse).
+*. Move the scripts and links to the end of body tag.
+*. Added media, defer and async attribute to the CSS and JavaScript links.
+*. Compress images and minify the js files.
 
 ####Part 2: Optimize Frames per Second in pizza.html
-1. Inline and identify the **Critical CSS** in the head tag by using the [penthouse](https://github.com/pocketjoso/penthouse).
-2. Add the CSS attribute for the mover class in style.css to improve the render speed (composite independent layers)
+*. Inline and identify the **Critical CSS** in the head tag by using the [penthouse](https://github.com/pocketjoso/penthouse).
+*. Add the CSS attribute for the mover class in style.css to improve the render speed (composite independent layers)
 
 ```css
 .mover {
@@ -55,9 +55,9 @@ $ open "http://localhost:8000"
   backface-visibility: hidden;
 }"
 ```
-3. Replace the querySelector and querySelectorAll with getElementsByClassName and getElementById for faster speed.
-4. Minify the main.js files, use the minified files for production.
-5. Delete the determineDx function and move sizeSwitcher(size) to changePizzaSizes(size),move the DOM selector out of loop
+*. Replace the querySelector and querySelectorAll with getElementsByClassName and getElementById for faster speed.
+*. Minify the main.js files, use the minified files for production.
+*. Delete the determineDx function and move sizeSwitcher(size) to changePizzaSizes(size),move the DOM selector out of loop
 
 ```JS
 function changePizzaSizes(size) {
@@ -83,7 +83,7 @@ function changePizzaSizes(size) {
   }
 }"
 ```
-6. Added getRandomIntInclusive function to generate random integer number from 0-4, and update the updatePositions function
+*. Added getRandomIntInclusive function to generate random integer number from 0-4, and update the updatePositions function
 ```JS
 function updatePositions() {
   frame++;

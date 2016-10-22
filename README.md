@@ -15,16 +15,23 @@ $ git clone https://github.com/joeyzhang1989/Web-optimizations.git
 
 **2.** Serve the application:
 
-```
+
 ###### Python 2
+
+```bash
 $ python -m SimpleHTTPServer 
+
+```
 ###### Python 3 
-$ python3 -m http.server.   ```
+
+```bash
+$ python3 -m http.server.   
+```
 You can use the Python SimpleHTTPServer to serve this webpage game on your local machine.
 
 **3.** Open the application:
 
-```
+```bash
 $ open "http://localhost:8000"
 ```
 

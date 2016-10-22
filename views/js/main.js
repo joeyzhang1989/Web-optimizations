@@ -417,24 +417,29 @@ var resizePizzas = function(size) {
 
   changeSliderLabel(size);
 
-  // Iterates through pizza elements on the page and changes their widths
+// Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
-    
     switch(size) {
-        case "1":
-          newwidth =  25;
-        case "2":
-          newwidth =  33.33;
-        case "3":
-          newwidth =  50;
-        default:
-          console.log("bug in sizeSwitcher");
-      }
-      var randomPizzas = document.querySelectorAll(".randomPizzaContainer");
+      case "1":
+        newWidth = 25;
+        break;
+      case "2":
+        newWidth = 33.3;
+        break;
+      case "3":
+        newWidth = 50;
+        break;
+      default:
+        console.log("bug in sizeSwitcher");
+    }
+
+    var randomPizzas = document.querySelectorAll(".randomPizzaContainer");
+
     for (var i = 0; i < randomPizzas.length; i++) {
-      randomPizzas[i].style.width = newwidth + "%";
+      randomPizzas[i].style.width = newWidth + "%";
     }
   }
+
 
   changePizzaSizes(size);
 

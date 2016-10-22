@@ -4,7 +4,7 @@ This project aims to optimize and improve the webpage load speed based on critic
 speed and make the animation effect within the 60 fps require according to the optimization on HTML,CSS and JavaScript. Original code is from the Udacity front-end developer nano degree program's repository [frontend-nanodegree-mobile-portfolio](https://github.com/udacity/frontend-nanodegree-mobile-portfolio). 
 
 ### Getting started
-##### Live demo on Github Page:[Website Performance Optimization](https://joeyzhang1989.github.io/Web-optimizations/). 
+##### Live demo on Github Page: [Website Performance Optimization](https://joeyzhang1989.github.io/Web-optimizations/). 
 ##### Locally
 
 **1.** Clone this repo:
@@ -59,4 +59,8 @@ $ open "http://localhost:8000"
 * <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/image-optimization.html">Optimize images</a>
 * <a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching.html">HTTP caching</a>
 
+##License
+This project is a public domain work, dedicated using
+[MIT](https://opensource.org/licenses/MIT). Feel free to do
+whatever you want with it.
 

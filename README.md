@@ -30,13 +30,12 @@ $ open "http://localhost:8000"
 
 ### Optimized parts
 
-####Part 1: Optimize PageSpeed Insights score for html files
+####Part 1: Optimize PageSpeed Insights score for html files [PageSpeed Tools](https://developers.google.com/speed/pagespeed/insights/)
 
 1. Inline and identify the **Critical CSS** in the head tag by using the [penthouse](https://github.com/pocketjoso/penthouse).
 1. Move the scripts and links to the end of body tag.
 1. Added media, defer and async attribute to the CSS and JavaScript links.
 1. Compress images and minify the js files.
-
 
 ####Part 2: Optimize Frames per Second in pizza.html
 

@@ -45,7 +45,7 @@ $ open "http://localhost:8000"
 1. Compress images and minify the js files.
 
 ####Part 2: Optimize Frames per Second in pizza.html
-2. Inline and identify the **Critical CSS** in the head tag by using the [penthouse](https://github.com/pocketjoso/penthouse).
+1. Inline and identify the **Critical CSS** in the head tag by using the [penthouse](https://github.com/pocketjoso/penthouse).
 2. Add the CSS attribute for the mover class in style.css to improve the render speed (composite independent layers)
 
 ```css
@@ -55,9 +55,9 @@ $ open "http://localhost:8000"
   backface-visibility: hidden;
 }"
 ```
-2. Replace the querySelector and querySelectorAll with getElementsByClassName and getElementById for faster speed.
-2. Minify the main.js files, use the minified files for production.
-2. Delete the determineDx function and move sizeSwitcher(size) to changePizzaSizes(size),move the DOM selector out of loop
+3. Replace the querySelector and querySelectorAll with getElementsByClassName and getElementById for faster speed.
+4. Minify the main.js files, use the minified files for production.
+5. Delete the determineDx function and move sizeSwitcher(size) to changePizzaSizes(size),move the DOM selector out of loop
 
 ```JS
 function changePizzaSizes(size) {
@@ -83,7 +83,7 @@ function changePizzaSizes(size) {
   }
 }"
 ```
-2. Added getRandomIntInclusive function to generate random integer number from 0-4, and update the updatePositions function
+6. Added getRandomIntInclusive function to generate random integer number from 0-4, and update the updatePositions function
 ```JS
 function updatePositions() {
   frame++;

@@ -1,16 +1,12 @@
 /*
 Welcome to the 60fps project! Your goal is to make Cam's Pizzeria website run
 jank-free at 60 frames per second.
-
 There are two major issues in this code that lead to sub-60fps performance. Can
 you spot and fix both?
-
-
 Built into the code, you'll find a few instances of the User Timing API
 (window.performance), which will be console.log()ing frame rate data into the
 browser console. To learn more about User Timing API, check out:
 http://www.html5rocks.com/en/tutorials/webperformance/usertiming/
-
 Creator:
 Cameron Pittman, Udacity Course Developer
 cameron *at* udacity *dot* com
@@ -421,9 +417,15 @@ var resizePizzas = function(size) {
 
   changeSliderLabel(size);
 
-  // Iterates through pizza elements on the page and changes their widths
-  function changePizzaSizes(size) {
-    switch(size) {
+   // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
+  function determineDx (elem, size) {
+    var oldWidth = elem.offsetWidth;
+    var windowWidth = document.querySelector("#randomPizzas").offsetWidth;
+    var oldSize = oldWidth / windowWidth;
+
+    // Changes the slider value to a percent width
+    function sizeSwitcher (size) {
+      switch(size) {
         case "1":
           return 0.25;
         case "2":
@@ -433,10 +435,20 @@ var resizePizzas = function(size) {
         default:
           console.log("bug in sizeSwitcher");
       }
+    }
 
-    var randomPizzas = document.getElementByClassName(".randomPizzaContainer");
-    for (var i = 0; i < randomPizzas.length; i++) {
-      randomPizzas[i].style.width = newwidth + "%";
+    var newSize = sizeSwitcher(size);
+    var dx = (newSize - oldSize) * windowWidth;
+
+    return dx;
+  }
+
+  // Iterates through pizza elements on the page and changes their widths
+  function changePizzaSizes(size) {
+    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
+      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
+      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
+      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
     }
   }
 

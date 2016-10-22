@@ -22,7 +22,7 @@
   clear:both;
 }
 
-.mover {
+/*.mover {
   transform: translateZ(0);
   will-change: transform;
-}
+}*/

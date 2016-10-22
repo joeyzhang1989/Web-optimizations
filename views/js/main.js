@@ -439,7 +439,7 @@ var resizePizzas = function(size) {
 
     var newSize = sizeSwitcher(size);
     var dx = (newSize - oldSize) * windowWidth;
-    console.log(dx);
+    console.log(windowWidth);
     return dx;
   }
 

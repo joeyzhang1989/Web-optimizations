@@ -50,10 +50,12 @@ $ open "http://localhost:8000"
 
 ```css
 .mover {
-  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
   will-change: transform;
-  backface-visibility: hidden;
-}"
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
 ```
 * Replace the querySelector and querySelectorAll with getElementsByClassName and getElementById for faster speed.
 * Minify the main.js files, use the minified files for production.
@@ -77,31 +79,47 @@ function changePizzaSizes(size) {
 
     var randomPizzas = document.getElementsByClassName("randomPizzaContainer");
 
-    for (var i = 0; i < randomPizzas.length; i++) {
+    for (var i = 0, l = randomPizzas.length; i < l ; i++) {
       randomPizzas[i].style.width = newWidth + "%";
     }
   }
-}"
 ```
-* Added getRandomIntInclusive function to generate random integer number from 0-4, and update the updatePositions function
+* Move the 'mover' selector out of loop and declaring the phase variable in the initialisation of the for loop prevent it from being created every time the loop is executed
 ```JS
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
   var items = document.getElementsByClassName('mover');
-
-  function getRandomIntInclusive(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
+  var top = document.body.scrollTop / 1250;
   
-  for (var i = 0; i < items.length; i++) {
-    var randomNumber = getRandomIntInclusive(0,4);
-    var phase = Math.sin((document.body.scrollTop / 1250) + randomNumber);
+  for (var i = 0, l = items.length, phase i < l ; i++) {
+    phase = Math.sin(top + i % 5);
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
+```
+* Move the 'movingPizzas1' selector out of loop and generate the number of pizzas to draw based on the resolution of screen
+```JS
+document.addEventListener('DOMContentLoaded', function() {
+  var lWidth = window.screen.width;
+  var iHeight  = window.screen.height;
+  var s = 256;
+  var cols = lWidth / s;
+  var rows = iHeight / s;                  // Generate pizza number based on screen resolution
+  var pizzas = Math.floor(cols * rows);     // calculate the integer for pizzas using Math.floor function     
+  var movingPizzas = document.getElementById('movingPizzas1');
+  for (var i = 0, elem; i < pizzas; i++) {
+    elem = document.createElement('img');
+    elem.className = 'mover';
+    elem.src = "images/pizza.png";
+    elem.style.height = "100px";
+    elem.style.width = "73.333px";
+    elem.basicLeft = (i % cols) * s;
+    elem.style.top = (Math.floor(i / cols) * s) + 'px';
+    movingPizzas.appendChild(elem);
+  }
+  updatePositions();
+});
 ```
 ### Optimization Tips and Tricks
 * [Optimizing Performance](https://developers.google.com/web/fundamentals/performance/ "web performance")
